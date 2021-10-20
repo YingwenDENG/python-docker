@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Edit Posts</title>
+{% endblock %}
+
+{% block body %}
+<h1>Editing post </h1>
+<hr>
+<h2>Edit</h2>
+<!--why action here: the url we are submitting on-->
+<form action="/posts/edit/{{post.id}}" method="POST">
+<!--    use the original value as default value-->
+<!--    Title: <input type="text" name="title" id="title" value={{post.title}}>-->
+<!--    Post: <input type="text" name="content" id="content" value={{post.content}}>-->
+<!--    Author: <input type="text" name="author" id="author" value={{post.author}}>-->
+
+    <div class="mb-3">
+        <label for="title">Title:</label>
+        <input class="form-control" type="text" name="title" id="title" value= {{post.title}} aria-label="Title">
+    </div>
+    <div class="mb-3">
+        <label for="content">Post:</label>
+        <textarea class="form-control" type="text" name="content" id="content" aria-label="Content">{{post.content}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="author">Author:</label>
+        <input class="form-control" type="text" name="author" id="author" value={{post.author}} aria-label="Author">
+    </div>
+
+    <input type="submit" class="btn btn-sm btn-primary px-4 gap-3" value="Save">
+
+</form>
+<hr>
+{% endblock %}

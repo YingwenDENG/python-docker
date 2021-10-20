@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Posts</title>
+{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-between  align-items-center">
+    <h1 class="my-3">All posts </h1>
+    <a href="/posts/new" class="btn btn-sm btn-success px-4 gap-3"> + New posts</a>
+</div>
+<hr>
+    {% for post in posts %}
+        <h2>{{ post.title.upper() }}</h2>
+
+        {% if post.author %}
+            <small>Created By: {{ post.author }}</small>
+        {% else %}
+            <small>Created By: N/A</small>
+        {% endif %}
+        <p style="white-space: pre-wrap">{{ post.content}}</p>
+<!--        why href here-->
+        <a href="/posts/edit/{{post.id}}" class=" btn btn-sm btn-primary px-4 gap-3">Edit</a>
+        <a href="/posts/delete/{{post.id}}" class="btn btn-sm btn-secondary px-4 gap-3">Delete</a>
+
+        <hr>
+    {% endfor%}
+
+
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  web:
+    build: .
+    image: python-docker-web:latestTest
+    ports:
+      - "5050:5000"
+    volumes:
+      - ./App:/myApp/App
+    depends_on:
+      - postgis
+  postgis:
+    env_file:
+      - database.conf
+    image: postgis/postgis
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - db_config:/etc/mypostgis
+volumes:
+  db_data:
+  db_config:
